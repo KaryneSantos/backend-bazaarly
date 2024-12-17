@@ -1,0 +1,175 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "API do site Bazaarly",
+      "description": "Documentação CRUD - Projeto Bazaarly",
+      "version": "1.0.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/users": {
+        "get": {
+          "summary": "Lista todos os usuários",
+          "description": "Retorna uma lista de todos os usuários cadastrados.",
+          "responses": {
+            "200": {
+              "description": "Lista de usuários",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "ID do usuário"
+                    },
+                    "nome": {
+                      "type": "string",
+                      "description": "Nome do usuário"
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "Email do usuário"
+                    },
+                    "senha": {
+                      "type": "string",
+                      "description": "Senha do usuário"
+                    },
+                    "tipo_usuario": {
+                      "type": "enum",
+                      "description": "Tipo do usuário"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro no servidor"
+            }
+          }
+        },
+        "post": {
+          "summary": "Cria um novo usuário",
+          "description": "Cria um novo usuário no sistema.",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "Objeto contendo os dados do usuário.",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "description": "Nome do usuário"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Email do usuário"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "description": "Senha do usuário"
+                  },
+                  "confirmacao_senha": {
+                    "type": "string",
+                    "description": "Confirmação de senha do usuário"
+                  }
+                },
+                "required": ["nome", "email", "senha", "confirmacao_senha"]
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Usuário criado com sucesso"
+            },
+            "400": {
+              "description": "Dados inválidos"
+            },
+            "500": {
+              "description": "Erro no servidor"
+            }
+          }
+        }
+      },
+      "/users/upgrade": {
+        "put": {
+          "summary": "Atualiza usuário para vendedor",
+          "description": "Atualiza o tipo de usuário do sistema com base no ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID do usuário"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detalhes do usuário",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "nome": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "senha": {
+                    "type": "string"
+                  },
+                  "tipo_usuario": {
+                    "type": "enum"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Usuário não encontrado"
+            },
+            "500": {
+              "description": "Erro no servidor"
+            }
+          }
+        }
+      },
+      "/user/delete": {
+        "delete": {
+            "summary": "Deleta um usuário",
+            "description": "Deleta um usuário do sistema com base no ID.",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "type": "integer",
+                "description": "ID do usuário"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Usuário deletado com sucesso"
+              },
+              "404": {
+                "description": "Usuário não encontrado"
+              },
+              "500": {
+                "description": "Erro no servidor"
+              }
+       }  
+        }
+      }
+    }
+  }
+  

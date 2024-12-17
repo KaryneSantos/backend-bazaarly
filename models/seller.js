@@ -1,15 +1,9 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db');
+const sequelize = require('../config/database');
 const User = require('./user');
 
 const Vendedor = sequelize.define('vendedor', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    name: {
-    
+    nome: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -17,14 +11,13 @@ const Vendedor = sequelize.define('vendedor', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    cnpj: {
+    endereco_comercial: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
     },
-    endereço_comercial: {
+    telefone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
     },
     userId: {
         type: DataTypes.INTEGER,

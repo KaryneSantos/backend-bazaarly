@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 
             if (isPasswordValid) {
                 const token = jwt.sign({ email: user.email, userId: user.id }, process.env.secret, { expiresIn: '1h' });
-                res.status(200).json({ user: user, token: token });
+                res.status(200).json({ user: user, token: token, msg: 'Usuário logado.' });
             } else {
                 res.status(401).json({ errors: ['Senha incorreta.'] });
             }
@@ -39,3 +39,5 @@ router.post('/', async (req, res) => {
     }
 
 });
+
+module.exports = router;
