@@ -42,3 +42,5 @@ app.use('/product', productRouter);
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 });
+
+// Fazer atualização no código

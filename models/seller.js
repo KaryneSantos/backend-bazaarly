@@ -3,6 +3,11 @@ const sequelize = require('../config/database');
 const User = require('./user');
 
 const Vendedor = sequelize.define('vendedor', {
+    id: {
+        type: DataTypes.INTEGER, 
+        primaryKey: true, 
+        autoIncrement: true,
+    },
     nome: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -22,7 +27,6 @@ const Vendedor = sequelize.define('vendedor', {
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
         references: {
             model: User,
             key: 'id',
